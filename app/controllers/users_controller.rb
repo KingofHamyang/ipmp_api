@@ -3,10 +3,12 @@ class UsersController < ApplicationController
   before_action :get_user, only: [:show, :destroy, :update]
 
   def index
-    if @student
+    if params[:account]
+      render json: User.where(account: params[:account])
+    elsif @student
       render json: @student.users
     else
-      render json: Student.all
+      render json: User.all
     end
   end
 

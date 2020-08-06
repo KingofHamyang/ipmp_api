@@ -32,4 +32,6 @@ Rails.application.routes.draw do
 
   resources :uccs, only: [:index]
   resources :ucc_votes, only: [:index]
+
+  get '/get_ucc_by_keyword', to: 'uccs#get_by_keyword'
 end

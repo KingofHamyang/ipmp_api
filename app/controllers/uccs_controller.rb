@@ -11,6 +11,16 @@ class UccsController < ApplicationController
     end
   end
 
+  def get_by_keyword
+    keyword_schools = School.where("name like ?", "%#{params[:keyword]}%")
+    keyword_teams = Team.where("name like ?", "%#{params[:keyword]}%")
+
+    matched_teams = (keyword_schools.map(&:teams).flatten.uniq + keyword_teams).uniq
+
+    @uccs = matched_teams.map(&:uccs).flatten.uniq
+    render json: @uccs
+  end
+
   def create
     @ucc = @team.uccs.create!(ucc_params)
     render json: @ucc

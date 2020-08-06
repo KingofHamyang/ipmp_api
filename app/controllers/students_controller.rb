@@ -3,7 +3,9 @@ class StudentsController < ApplicationController
   before_action :get_student, only: [:show, :destroy, :update]
 
   def index
-    if @team
+    if params[:phone]
+      render json: Student.where(phone: params[:phone])
+    elsif @team
       render json: @team.students
     else
       render json: Student.all
