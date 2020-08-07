@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_06_141216) do
+ActiveRecord::Schema.define(version: 2020_08_07_081716) do
+
+  create_table "attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "file_name", limit: 200
+    t.bigint "notice_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["notice_id"], name: "index_attachments_on_notice_id"
+  end
 
   create_table "notices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "title", size: :long
@@ -94,6 +102,7 @@ ActiveRecord::Schema.define(version: 2020_08_06_141216) do
     t.index ["team_id"], name: "index_vrs_on_team_id"
   end
 
+  add_foreign_key "attachments", "notices"
   add_foreign_key "students", "teams"
   add_foreign_key "teams", "schools"
   add_foreign_key "ucc_votes", "uccs"

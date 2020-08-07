@@ -24,7 +24,9 @@ Rails.application.routes.draw do
 
   resources :settings
 
-  resources :notices
+  resources :notices do
+    resources :attachments, shallow: true
+  end
 
   resources :teams, only: [:index]
   resources :students, only: [:index]
