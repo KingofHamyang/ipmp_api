@@ -32,7 +32,7 @@ class AttachmentsController < ApplicationController
   private
 
   def attachment_params
-    params.require(:attachment).permit(:file_name, :notice_id)
+    params.require(:attachment).permit(:file_name, :notice_id, :display_name)
   end
 
   def get_attachment
