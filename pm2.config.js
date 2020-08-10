@@ -1,12 +1,7 @@
 module.exports = {
   apps : [{
     name        : "ipmp-rails",
-    args        : [
-      "server",
-      "--binding",
-      "0.0.0.0"
-    ],
-    script      : "~/.rvm/gems/ruby-2.6.1/bin/rails",
+    script      : "bundle exec & rails s --binding 0.0.0.0",
     watch       : true,
     env: {
       "RAILS_ENV": "development",
